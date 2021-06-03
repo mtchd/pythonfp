@@ -1,0 +1,6 @@
+00:18:35	Matthew Gamble:	python 3.10 (coming later this year) will bring structural pattern matching:https://www.python.org/dev/peps/pep-0634/
+00:19:40	Carlos Rojas:	Ruby already have pattern matching  :P
+00:20:13	Edit Bazso:	:-)
+00:24:59	Matthew Gamble:	dataclasses and pydantic do both support constructor-time code. dataclasses has __post_init__ and pydantic just expects you to call super().__init__(**data)
+00:27:04	Carlos Rojas:	You can convert the try/catch to Either
+00:33:55	Hakan Gurel:	Asyncio library supports parallelism as well as FastAPI (the framework we use).

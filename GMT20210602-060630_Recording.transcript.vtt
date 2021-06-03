@@ -1,0 +1,1074 @@
+WEBVTT
+
+1
+00:00:03.870 --> 00:00:07.080
+Mitchell Paterson: hosting and talking, you have to think about two things at the same time.
+
+2
+00:00:08.400 --> 00:00:09.450
+Mitchell Paterson: Alright, so.
+
+3
+00:00:10.650 --> 00:00:16.230
+Mitchell Paterson: i'll just start that from the top, because we're recording so once upon a time, on an executive laptop.
+
+4
+00:00:17.340 --> 00:00:20.190
+Mitchell Paterson: There was an executive with a house worth a lot of money.
+
+5
+00:00:21.720 --> 00:00:35.580
+Mitchell Paterson: But the Internet said it wasn't worth much money i'm a little website called R EA predicted that the House price was was a lot less this made the executive very interested in changing strategy.
+
+6
+00:00:36.630 --> 00:00:42.990
+Mitchell Paterson: And the executive called upon data scientists to make the price predictions more accurate.
+
+7
+00:00:44.250 --> 00:00:49.560
+Mitchell Paterson: and software engineers because we're called upon to make an API for those price predictions.
+
+8
+00:00:51.720 --> 00:00:56.940
+Mitchell Paterson: The engineers light scala nfp and scientists like Python.
+
+9
+00:00:58.110 --> 00:01:04.500
+Mitchell Paterson: And thus, of Python that ftp code base was born at our yay.
+
+10
+00:01:06.750 --> 00:01:17.670
+Mitchell Paterson: So let's start talking a bit about what it means to actually do Python FP um I was pretty clueless about programming in Python before this so.
+
+11
+00:01:19.170 --> 00:01:33.210
+Mitchell Paterson: This is, from my perspective of like what I found surprising going into Python as a functional programmer um and what I found that was useful and what I found that was maybe less useful.
+
+12
+00:01:33.780 --> 00:01:41.550
+Mitchell Paterson: Some of its not technically FP but it's worth including any way, I think I see that happened plenty enough that the field that are probably going to pass on that.
+
+13
+00:01:43.320 --> 00:01:57.660
+Mitchell Paterson: yeah so it's sort of chronological order of things I didn't expect going through the first one was tie pins and my pie so before we can start doing any of the FP things that make FP what it is.
+
+14
+00:01:59.340 --> 00:02:14.280
+Mitchell Paterson: We needed to get types going because Python is um it can appear on the surface, to be dynamic language, but you can make it quite strongly typed by defining types on any of the.
+
+15
+00:02:15.480 --> 00:02:24.210
+Mitchell Paterson: Like functions function parameters, what a function returns, or in the case of any variable that you have now.
+
+16
+00:02:25.170 --> 00:02:32.160
+Mitchell Paterson: This relates to something called my pie as well, my pie, is an external library, that you can use in Python.
+
+17
+00:02:32.670 --> 00:02:48.660
+Mitchell Paterson: um but I will say that the type hints that we put on here on native to Python so this external library that we use to a useful our live a vm API, which is the code base that we're doing an ftp peifer.
+
+18
+00:02:50.370 --> 00:03:03.090
+Mitchell Paterson: it's the we have my pie, and we can run it on that and it does something called static analysis so static analysis is a little bit like when you compile.
+
+19
+00:03:03.090 --> 00:03:05.370
+Mitchell Paterson: code inside scholar.
+
+20
+00:03:05.760 --> 00:03:12.690
+Mitchell Paterson: And it tells you a bunch of things tells you like oh you've got this wrong you tried to give the wrong type here you didn't give enough.
+
+21
+00:03:13.110 --> 00:03:18.300
+Mitchell Paterson: parameters to this function things like that so static analysis, a little bit like that and.
+
+22
+00:03:18.870 --> 00:03:28.980
+Mitchell Paterson: we're sort of able to mimic getting a compile time by using something by using my part and in this example here, you can see, this function has asked for a string.
+
+23
+00:03:29.790 --> 00:03:39.480
+Mitchell Paterson: we've given it a number and then my pie has complained saying that this argument has an incompatible type integer when I was expecting strength.
+
+24
+00:03:41.430 --> 00:03:48.180
+Mitchell Paterson: So you can then integrate my pie, with your limiting and with your bill type built so that.
+
+25
+00:03:49.200 --> 00:04:00.660
+Mitchell Paterson: If someone tries to do something that's incorrect and is simply not going to work in already fails to build that build you don't have to write extra tests like you would typically in a dynamic language like Ruby in order to get those things working.
+
+26
+00:04:04.140 --> 00:04:13.770
+Mitchell Paterson: cool so this kind of like emphasizes the principle of catching things before the code is right, which to me personally, is a big part of functional programming.
+
+27
+00:04:15.090 --> 00:04:22.650
+Mitchell Paterson: The idea is the like everything is so constrained that you get less runtime areas and more areas forehand.
+
+28
+00:04:23.580 --> 00:04:35.310
+Mitchell Paterson: Your by putting the types on that you start a whole chain of events that come after that, so you start encouraging people to avoid side effects because I have a return type and then.
+
+29
+00:04:36.450 --> 00:04:47.670
+Mitchell Paterson: You bring in something else, so the next step up from Kenya is adding stuff like optional and media, so we may know from scala, you have the option type and.
+
+30
+00:04:48.990 --> 00:05:08.640
+Mitchell Paterson: The either type well, these are sort of the equivalent of it, so if I have something in here, we have our same function as before, this requires a string and instead of having it that we had it nothing at all, so we've got here none when none is essentially the no value in Python.
+
+31
+00:05:09.870 --> 00:05:27.690
+Mitchell Paterson: And if we had that across to our function, once again we get a problem with my pie i'm saying that this is an incompatible type it's got none when it was expecting a string if you introduce something like optional, which is native to Python um you're then able to bring in.
+
+32
+00:05:29.220 --> 00:05:38.040
+Mitchell Paterson: You know, make that an optional string and thus handing non to it does not cause an issue with my part Now I will point out.
+
+33
+00:05:38.880 --> 00:06:00.870
+Mitchell Paterson: These are type hints not actual costs, so the early help when you run my pi a third party library on your code to do static analysis, so when you actually run this code and assuming you don't have my pie, or anything if I try to run this code beforehand and I fed into it.
+
+34
+00:06:03.090 --> 00:06:16.650
+Mitchell Paterson: This none right and I fit that into their this word simply say like it wouldn't stop itself it wouldn't you wouldn't suddenly error and say I can't run this code.
+
+35
+00:06:17.790 --> 00:06:20.340
+Mitchell Paterson: you've just fit a nun to something that required a string.
+
+36
+00:06:21.390 --> 00:06:30.240
+Mitchell Paterson: It would just keep going through and then it would either have a runtime era, or would just say you know nothing in there, because the your variables not right.
+
+37
+00:06:31.680 --> 00:06:36.300
+Mitchell Paterson: So it's it's kind of a bit of a drawback in the when you do.
+
+38
+00:06:37.590 --> 00:06:46.380
+Mitchell Paterson: When you do have a Python done in this way you're really just doing what simply type hints and not actual classes.
+
+39
+00:06:46.770 --> 00:06:58.140
+Mitchell Paterson: So it actually helped when you run the code it's not going to actually physically stop you, but it does go to some extent to it and to be honest, while I was writing this card myself in.
+
+40
+00:06:59.580 --> 00:07:12.420
+Mitchell Paterson: You know in this code base I didn't even notice that it was actually just a type in a non natural class um as far as I could tell like this was optional pretty much behaving the same as an option you'd find you know.
+
+41
+00:07:14.730 --> 00:07:32.190
+Mitchell Paterson: As in scala But that does come more problems so let's talk about Union a bit more it's a bit like an EVO except Union doesn't have to be just an era, like you know how you have in Union typically in scala you'll have a Left and a right.
+
+42
+00:07:34.320 --> 00:07:49.650
+Mitchell Paterson: And that left and right a will usually represent a Eric case and a correct case i'm Union in Python can represent any number of types, so you can have something that a look a little bit like.
+
+43
+00:07:52.410 --> 00:07:54.480
+Mitchell Paterson: Union and then you can put.
+
+44
+00:07:57.690 --> 00:08:00.120
+Mitchell Paterson: Correct nice one.
+
+45
+00:08:01.260 --> 00:08:04.710
+Mitchell Paterson: REX phase two and then an arrow.
+
+46
+00:08:06.360 --> 00:08:15.450
+Mitchell Paterson: Whatever else you want it really just represents that that whatever you have in there should be an instance of one of these three types.
+
+47
+00:08:17.160 --> 00:08:30.660
+Mitchell Paterson: But once again, this is a tight hands, not an actual class so you're not able to do something like it's all sort of pattern matching on this and you're not able to run something like.
+
+48
+00:08:31.080 --> 00:08:39.270
+Mitchell Paterson: Like a function that just says like job is right, like you would on an either in scala and you can't map over it either so.
+
+49
+00:08:40.080 --> 00:08:52.140
+Mitchell Paterson: For example, in scala if you were able to if you had an option, you will be able to go dot map and then it would apply the function if you had a some instead of a nun in this case you can't run a map like that.
+
+50
+00:08:53.220 --> 00:09:06.390
+Mitchell Paterson: Instead, you have to do this, which is a little bit not ideal, you have to say, for example, if is instance X string or like, in this case, you might want to check is it like.
+
+51
+00:09:08.340 --> 00:09:09.120
+Mitchell Paterson: Correct.
+
+52
+00:09:10.410 --> 00:09:11.070
+Mitchell Paterson: it's one.
+
+53
+00:09:12.750 --> 00:09:14.220
+Mitchell Paterson: And then, when you check that in that.
+
+54
+00:09:17.520 --> 00:09:21.870
+Mitchell Paterson: Then you can get that from that now I just noticed we've got a.
+
+55
+00:09:23.250 --> 00:09:34.860
+Mitchell Paterson: Good comment coming in talking about Python three point 10 bring structural practice pattern matching that is absolutely right, I am literally just about that so pattern matching let's talk about that um.
+
+56
+00:09:36.000 --> 00:09:43.470
+Mitchell Paterson: we've got it in Python three point in Python is sort of heading in this direction where it's allowing more functional things.
+
+57
+00:09:44.760 --> 00:10:00.180
+Mitchell Paterson: we're currently Python 3.9 Point five is the latest version of Python that you find out of beta and in normal use Python three point 10 is on the beta you can use it we considered using it in prop track.
+
+58
+00:10:01.260 --> 00:10:06.420
+Mitchell Paterson: decided, using a beta version or language probably sting us a bit more than it would benefit us.
+
+59
+00:10:08.040 --> 00:10:19.650
+Mitchell Paterson: See, so you do get this pattern matching and it's it's good and quite a few ways so let's talk about it, if it isn't example we've got yo where we can match the media object, we can match it on a.
+
+60
+00:10:21.150 --> 00:10:31.590
+Mitchell Paterson: Type here um so we can say okay if it's an image and it's got this string variable here so it's the type is equal to jpg, then you could return software.
+
+61
+00:10:32.070 --> 00:10:44.100
+Mitchell Paterson: And then we've got an image here, and you can say well all right if it's off that class and it has a string matching to PNG or jiff in there, then you can use that.
+
+62
+00:10:45.390 --> 00:10:53.850
+Mitchell Paterson: And furthermore, you can match it if it were on the video class and say we can't do videos yet otherwise raising exception and say it can't be handed yet.
+
+63
+00:10:55.230 --> 00:11:03.810
+Mitchell Paterson: This pattern matching isn't exhaustive so it's not able to run like you would in scala way, you can have a.
+
+64
+00:11:05.550 --> 00:11:15.840
+Mitchell Paterson: An exhaustive patent match on a like a sealed tripe, for example, and say okay we've got all the versions covered and anything else in that.
+
+65
+00:11:17.550 --> 00:11:26.910
+Mitchell Paterson: You are confident that you've covered everything you would need some kind of capital at the bottom because you're still trade perhaps he has three possible permutations.
+
+66
+00:11:28.650 --> 00:11:42.840
+Mitchell Paterson: Right um so that's a bit about patent machine um it's coming but it's not quite there yet data classes, is another attempt to apply for him to be a bit more on the functional side, so this was actually introduced in Python 3.7.
+
+67
+00:11:43.440 --> 00:11:53.010
+Mitchell Paterson: trees, a few versions ago um but it's there is still a lot of strong signaling that pythons going in this direction with time, which is positive, I guess.
+
+68
+00:11:53.460 --> 00:12:10.620
+Mitchell Paterson: um so i'll talk a bit about data classes, you have data classes that are a native platform and they look like this it says, you know you add an annotation at the top at data class and then you can say frozen equals true, and when we say frozen, we mean that it's immutable.
+
+69
+00:12:12.510 --> 00:12:13.260
+Mitchell Paterson: So.
+
+70
+00:12:14.430 --> 00:12:21.810
+Mitchell Paterson: You then add whatever you know particular it's of data that you want, on that day of class with the following syntax right underneath.
+
+71
+00:12:22.920 --> 00:12:36.630
+Mitchell Paterson: What we're actually doing in property insights isn't using the data science classes that are native to Python we're using something called pedantic, which is the third party library, so my dad take has a couple of advantages.
+
+72
+00:12:38.490 --> 00:12:39.930
+Mitchell Paterson: in the sense that.
+
+73
+00:12:41.010 --> 00:12:49.140
+Mitchell Paterson: it's able to do a little bit more validation tell you a little bit more things and it works well with our API so so let me explain what I mean by that.
+
+74
+00:12:50.160 --> 00:12:57.210
+Mitchell Paterson: we've got a prediction class here, which is three things on it predicted error predictive value and target ID.
+
+75
+00:12:58.680 --> 00:13:02.670
+Mitchell Paterson: If I attempted to class and kind of variable, and I say prediction.
+
+76
+00:13:04.230 --> 00:13:14.010
+Mitchell Paterson: And I call the constructor prediction, and I say predicted era and I give it some number, then I leave our target ID string.
+
+77
+00:13:15.210 --> 00:13:21.450
+Mitchell Paterson: instantly I get an error saying you missed the named argument target ID for prediction here.
+
+78
+00:13:22.800 --> 00:13:30.870
+Mitchell Paterson: So it does some verifying on that, but notice that it didn't say you missed the predictive value as that was an optional that.
+
+79
+00:13:31.440 --> 00:13:43.080
+Mitchell Paterson: i'm now This gives me great api's because it can return back exactly what you're missing in that this is an immutable thing it works much like a data classroom and caitlyn or a case class would install.
+
+80
+00:13:44.310 --> 00:13:51.810
+Mitchell Paterson: So you've got that going for platform which is nice I guess um and it's it's definitely useful but.
+
+81
+00:13:52.980 --> 00:14:01.020
+Mitchell Paterson: It does have the occasional limitation in that you can't make it a sort of custom constructor or anything for it.
+
+82
+00:14:02.520 --> 00:14:14.550
+Mitchell Paterson: Unless you were to define start defining like I guess extra extra functions in the data class it's yeah it's not as good as you would might find in a case class in.
+
+83
+00:14:15.180 --> 00:14:24.690
+Mitchell Paterson: scala so I guess moving on to the next part we've got higher order functions in Python we did not have a higher kind of types or anything.
+
+84
+00:14:24.960 --> 00:14:38.220
+Mitchell Paterson: like that, but you do at least have higher order functions so functions of first class citizens in plastic so functions can be given to other functions and functions can return functions What that means is that you're able to do.
+
+85
+00:14:39.990 --> 00:14:57.090
+Mitchell Paterson: We just use this down what that means is you're able to do the you know your classic functions like map and filter and such that you can do over any old list you're also able to do partially applied functions so you're able to do.
+
+86
+00:14:58.710 --> 00:15:04.560
+Mitchell Paterson: You call it, such as partial and you say, like my facially.
+
+87
+00:15:06.390 --> 00:15:08.040
+Mitchell Paterson: Why function.
+
+88
+00:15:11.820 --> 00:15:13.470
+Mitchell Paterson: Make that much smaller.
+
+89
+00:15:14.850 --> 00:15:18.600
+Mitchell Paterson: Then you can call it like this, say partial my Funk.
+
+90
+00:15:19.770 --> 00:15:25.560
+Mitchell Paterson: And then say that i'm the original function needed to images.
+
+91
+00:15:27.000 --> 00:15:29.190
+Mitchell Paterson: So I could say my Funk and the.
+
+92
+00:15:30.570 --> 00:15:35.070
+Mitchell Paterson: One that have tied in to type in.
+
+93
+00:15:42.450 --> 00:15:43.980
+Mitchell Paterson: And we're able to do.
+
+94
+00:15:46.800 --> 00:15:56.400
+Mitchell Paterson: yeah a partially applied function, there were the first part is first variables declare this one, so, then you only have to declare the second variable in there.
+
+95
+00:15:57.750 --> 00:15:59.700
+Mitchell Paterson: yeah um but it's not.
+
+96
+00:16:00.780 --> 00:16:16.800
+Mitchell Paterson: it's not really as like nuts, as what you did in scala um because in scala you i'm looking at a um when you did this, you would more just call this my phone thing here, and you would simply call it by just giving it.
+
+97
+00:16:18.090 --> 00:16:28.170
+Mitchell Paterson: That first variable and then handing it back and you might have to do some extra syntax depending on how you've defined your scala code base to work but.
+
+98
+00:16:29.490 --> 00:16:42.510
+Mitchell Paterson: It means that you don't have to do, like a whole a whole nother thing like partial year apply that across anywhere it's the syntax is slightly different and not quite as Nice as just handing in this function and anything else in there.
+
+99
+00:16:42.870 --> 00:16:56.910
+Mitchell Paterson: And that actually causes problems when you're like Okay, if you want to hand into a can you just how exactly do you do that, you can use a keyword argument, but then sometimes problems arise with that and it gets a little bit messy.
+
+100
+00:16:58.170 --> 00:17:03.300
+Mitchell Paterson: yeah so um I think i've kind of covered some of the functional parts of.
+
+101
+00:17:05.820 --> 00:17:11.100
+Mitchell Paterson: Python and what we can use but there's even more drawbacks on what we've done so far.
+
+102
+00:17:12.210 --> 00:17:21.180
+Mitchell Paterson: The tooling is not so great, so when we use my pie, and we use pilot there are occasional times when those things complain about things that don't really mean anything.
+
+103
+00:17:23.010 --> 00:17:25.770
+Mitchell Paterson: We if you're not using iron with.
+
+104
+00:17:26.910 --> 00:17:38.280
+Mitchell Paterson: functional Python you've got to use a lot of try catch statements that can get frustrating, as you try and catch can expand on very far as a lot of the libraries in the.
+
+105
+00:17:39.240 --> 00:17:49.980
+Mitchell Paterson: not really designed for functional use so if you're expecting i'm like you can convert a try catch to either, so you get a you'll get a.
+
+106
+00:17:50.610 --> 00:18:05.490
+Mitchell Paterson: Side effecting function from your library, and when you get that you then have to wrap that in a try catch and then you can return your Union of APP era, or an actual response.
+
+107
+00:18:06.630 --> 00:18:18.960
+Mitchell Paterson: And so it kind of it feels a little less convenient as you would do in scala because you are now writing a huge try catch for every single library function that you're doing out.
+
+108
+00:18:19.590 --> 00:18:30.660
+Mitchell Paterson: And then converting it to a Union type which you then return um there's not particularly straightforward ways to make variables immutable you do have that frozen in the data class but.
+
+109
+00:18:32.370 --> 00:18:37.350
+Mitchell Paterson: yeah and so so there's sort of a bunch of things that are drawbacks.
+
+110
+00:18:38.940 --> 00:18:48.300
+Mitchell Paterson: That you'll find about them, but I will say after all this i'm The key thing that has done, that is often a problem here at ra.
+
+111
+00:18:48.840 --> 00:19:02.610
+Mitchell Paterson: Is that we build something that's semi functional but also easy enough for the data sciences, that we work with to totally understand and for other people to hopefully pick up relatively easily compared to a fully functional scala code base.
+
+112
+00:19:03.960 --> 00:19:12.270
+Mitchell Paterson: So we have this advantage of we've had to peel back on a lot of functional concepts in order to sort of get to a stage where.
+
+113
+00:19:13.620 --> 00:19:24.600
+Mitchell Paterson: We can do a code base that is improved over what it could have been if it was very object oriented or narrative but does apply some functional concepts.
+
+114
+00:19:26.400 --> 00:19:35.940
+Mitchell Paterson: we've also done a little bit of property based testing i've sort of leftist to the very, very end because it's not totally i'm.
+
+115
+00:19:37.050 --> 00:19:44.610
+Mitchell Paterson: not totally functional but it's also there's a great library put hypothesis for using property paste.
+
+116
+00:19:45.810 --> 00:19:46.860
+Mitchell Paterson: Testing in.
+
+117
+00:19:48.540 --> 00:19:55.950
+Mitchell Paterson: In Python that I would definitely recommend and a lot of sort of final note, a lot of what we've done in here.
+
+118
+00:19:56.520 --> 00:20:08.340
+Mitchell Paterson: And sort of applied this idea of using a functional poor and an imperative Shell, this has been mentioned that the functional programming killed like dozens of times but it's the idea of building.
+
+119
+00:20:09.720 --> 00:20:12.060
+Mitchell Paterson: A imperative Shell that does the.
+
+120
+00:20:13.950 --> 00:20:20.790
+Mitchell Paterson: This sort of IRA type operations where you handle your areas on the outside so.
+
+121
+00:20:21.330 --> 00:20:32.730
+Mitchell Paterson: on the inside you've got a bunch of functions and they always return something energy side effects they will return something like a union of APP era or your response and then.
+
+122
+00:20:33.660 --> 00:20:40.080
+Mitchell Paterson: Those keep returning up to a higher level, where you find the deal with the APP era and then suicide affecting function.
+
+123
+00:20:41.940 --> 00:20:54.150
+Mitchell Paterson: All right, okay um I think that's sort of covers just about everything I have prepared speeches we jotted down to ramble about um I might try and deal with some of the.
+
+124
+00:20:55.020 --> 00:21:06.900
+Mitchell Paterson: Extra comments i'm seeing here so data classes and by then take do both support constructed time code did it closes as opposed to knit and my data just expects you to call super.in it.
+
+125
+00:21:08.130 --> 00:21:08.580
+Mitchell Paterson: data.
+
+126
+00:21:09.840 --> 00:21:14.880
+Mitchell Paterson: yeah so um when you do do a constructor in identity.
+
+127
+00:21:17.790 --> 00:21:21.150
+Mitchell Paterson: and go up to door was for data classes.
+
+128
+00:21:23.280 --> 00:21:23.850
+Mitchell Paterson: um.
+
+129
+00:21:25.500 --> 00:21:30.510
+Mitchell Paterson: yeah it like i'm not sure what you're saying here when you call this it does.
+
+130
+00:21:32.820 --> 00:21:40.860
+Mitchell Paterson: Oh, I see what you mean yeah yeah like customizing the constructor yeah absolutely um that's true I guess you can.
+
+131
+00:21:42.690 --> 00:21:45.930
+Mitchell Paterson: Call super and get a different answer on that so that's a good point.
+
+132
+00:21:47.040 --> 00:21:50.220
+Mitchell Paterson: Anyway, um were there any other questions anyone wants to ask.
+
+133
+00:21:52.800 --> 00:21:54.960
+Carlos Rojas: A question um.
+
+134
+00:21:56.160 --> 00:22:01.080
+Carlos Rojas: You know, like when we just say oh one of the benefits we get this for a synchronous programming.
+
+135
+00:22:03.210 --> 00:22:08.130
+Carlos Rojas: You know, seeing can see a scene, I was just wondering, I know that Python has now a scene.
+
+136
+00:22:09.420 --> 00:22:17.190
+Carlos Rojas: From first of all, and I don't know if you guys are using a framework that takes advantage of that or no like you know the scene go away, it makes you go away thing.
+
+137
+00:22:18.900 --> 00:22:31.650
+Mitchell Paterson: yeah that's a funny one um so look the, the answer is no, at the moment we're not using a framework that does that, but we are looking into one that does that so.
+
+138
+00:22:33.330 --> 00:22:39.600
+Mitchell Paterson: we're going to have to introduce a custom framework like we think of using a library called http X.
+
+139
+00:22:40.830 --> 00:22:46.950
+Mitchell Paterson: And that's going to help us answer some of those questions around, how do we run stuff.
+
+140
+00:22:48.450 --> 00:22:55.860
+Mitchell Paterson: asynchronously um you do have native to Python Of course you can start doing.
+
+141
+00:22:57.030 --> 00:23:07.590
+Mitchell Paterson: A sync function, so you can see, death my function, etc, etc, and then you know when you pull it, you can be like my response equals.
+
+142
+00:23:10.380 --> 00:23:11.160
+Mitchell Paterson: Wait.
+
+143
+00:23:13.320 --> 00:23:13.770
+Mitchell Paterson: My.
+
+144
+00:23:16.770 --> 00:23:20.010
+Mitchell Paterson: iPhone do things in there, the problem is.
+
+145
+00:23:21.420 --> 00:23:29.160
+Mitchell Paterson: Like a lot of things in Python might be natively single threaded or just simply done synchronously and.
+
+146
+00:23:30.300 --> 00:23:39.330
+Mitchell Paterson: You know, for example, if you would have used the request library, which is a native library and platform for making http requests it's entirely synchronous.
+
+147
+00:23:40.950 --> 00:23:50.550
+Mitchell Paterson: And like if you were putting a sink def we're awake or anything in that it wouldn't really matter as far as I know, correct me if i'm wrong.
+
+148
+00:23:52.590 --> 00:24:00.300
+Mitchell Paterson: yeah so like without ir we pretty much have to rely on another third party libraries to try and.
+
+149
+00:24:01.410 --> 00:24:07.170
+Mitchell Paterson: Do asynchronous stuff yeah and we were just not there, we were looking into it now, but we're not up to.
+
+150
+00:24:09.900 --> 00:24:10.980
+cool thanks.
+
+151
+00:24:16.440 --> 00:24:27.660
+Nick Gray: um and she sort of mentioned that kind of chose to do this in Python because there's like data scientists involved and they're like Python you guys liked you know the devils like def pay.
+
+152
+00:24:29.550 --> 00:24:34.890
+Nick Gray: How much involvement, do they like still have in the in the code and like I was wondering if.
+
+153
+00:24:36.390 --> 00:24:43.410
+Nick Gray: If they kind of viewed this is like not idiomatic Python that you're writing or like how's the reception been and also has there been many.
+
+154
+00:24:44.130 --> 00:24:52.650
+Nick Gray: Times where you've run into things that you sort of think like this wouldn't have happened if you're headed and you know another language like scholar or something else.
+
+155
+00:24:53.880 --> 00:24:56.580
+Mitchell Paterson: yeah yeah we think about that, like every.
+
+156
+00:24:56.580 --> 00:24:56.880
+Day.
+
+157
+00:24:58.050 --> 00:25:05.190
+Mitchell Paterson: Thinking about like is this, easy to understand, do they did they get this is it goods like.
+
+158
+00:25:06.390 --> 00:25:18.660
+Mitchell Paterson: So it's an interesting thing the way it's actually set up the data, scientists have like a bunch of great photos that do their models right they do their their.
+
+159
+00:25:20.310 --> 00:25:39.090
+Mitchell Paterson: Property price predictive models and then we have an API that sits on top of it, but they have their own api's inside that little models and we call to those api's get all the information together in one big blob blob do some calculation on it and then send that out, so the.
+
+160
+00:25:40.170 --> 00:25:54.210
+Mitchell Paterson: The overlap is somewhat between we reach into their models sometimes i'm to do things and that we have other people who work sort of as a cross between a software engineer and a data scientist on what we're doing.
+
+161
+00:25:54.900 --> 00:26:08.250
+Mitchell Paterson: um we had a records, a day on like is this difficult and the question came up during the retro sorry is this difficult, is it hard and people would generally okay with it i'm the vibe was yeah.
+
+162
+00:26:08.820 --> 00:26:21.420
+Mitchell Paterson: This is like there's a bit of EPI in here and it's Okay, and in fact we ended up sort of deciding yeah we're going to keep on going and take us to a more complex level where we'll introduce more things and.
+
+163
+00:26:23.070 --> 00:26:26.730
+Mitchell Paterson: Like it's it's basically that it seems to be appetite.
+
+164
+00:26:28.020 --> 00:26:39.000
+Mitchell Paterson: For this, in that people are happy with the fact that um it's not too complex, so it seems to be achieving that goal a thus far.
+
+165
+00:26:41.160 --> 00:26:43.680
+Mitchell Paterson: And I think if it wasn't scala, we would not have achieved that.
+
+166
+00:26:44.730 --> 00:26:51.120
+Mitchell Paterson: There will be no way they could touch any of our car and we would know nothing about Python so we can touch their code.
+
+167
+00:26:52.410 --> 00:27:04.380
+Mitchell Paterson: And we've learned a lot about Python and about how to do Python better along the way the with them being able to pass down some of the work that they've been doing as well she's been pretty cool.
+
+168
+00:27:06.060 --> 00:27:06.660
+that's awesome.
+
+169
+00:27:24.840 --> 00:27:39.720
+Carlos Rojas: And, was it difficult to I know how did you guys approach this, but I know how did you see the slides the project, how did you break them, but was it difficult to find a place to to.
+
+170
+00:27:40.770 --> 00:27:50.040
+Carlos Rojas: Do the work on getting the static typing working the libraries like how did you how did you convince.
+
+171
+00:27:51.150 --> 00:27:53.910
+Carlos Rojas: At the beginning of the pray that you will use this for the for the project.
+
+172
+00:27:55.500 --> 00:27:57.180
+Mitchell Paterson: yeah yeah so.
+
+173
+00:27:57.360 --> 00:28:14.820
+Mitchell Paterson: We had a huge idea where we sort of decided it's great scholar platform, and then we said well if it's pie, for that, how are we going to do it and a big part of that was well, it needs to be done the right way, so we need to involve a lot of.
+
+174
+00:28:16.770 --> 00:28:22.800
+Mitchell Paterson: cheekily these things like the static typing The short answer to your question is it was pretty damn easy actually.
+
+175
+00:28:23.340 --> 00:28:34.260
+Mitchell Paterson: i'm adding all of this typing and adding stuff like my pie, and everything it's really just like let's add an extra bill sidestep specify some things about how you want these libraries to work and then off we go.
+
+176
+00:28:35.880 --> 00:28:45.000
+Mitchell Paterson: It like you just have to make sure that you had all of the types in there, I think it was definitely like at the very beginning and adjustment.
+
+177
+00:28:45.300 --> 00:28:55.320
+Mitchell Paterson: The people who have used to run Python without types to suddenly start writing with types, but built I would basically tell you if you didn't put a talk in that it would be like no.
+
+178
+00:28:56.460 --> 00:29:06.240
+Mitchell Paterson: not getting merged like it failed to build and up I wouldn't go through so you'd be stuck there and.
+
+179
+00:29:07.740 --> 00:29:15.120
+Mitchell Paterson: I think definitely when you do it in that style it makes it pretty easy for people to keep up with what you're doing.
+
+180
+00:29:17.400 --> 00:29:22.170
+Mitchell Paterson: yeah like it's so so yeah like to ask your question.
+
+181
+00:29:23.220 --> 00:29:27.360
+Mitchell Paterson: We will pretty much on they're going to do platform if we added all of this extra functionality.
+
+182
+00:29:28.290 --> 00:29:41.700
+Mitchell Paterson: And all of these extra like libraries and stuff in the first place, because otherwise we would have just done scholar, and if you'd like know this all like we prefer it to be constrained to some extent.
+
+183
+00:29:42.540 --> 00:29:49.500
+Mitchell Paterson: So this was kind of the meeting halfway where they convinced the scholar able to do Python by saying okay let's put in all these extra things.
+
+184
+00:29:51.030 --> 00:29:51.450
+Mitchell Paterson: yeah.
+
+185
+00:29:52.590 --> 00:29:52.830
+Mitchell Paterson: cool.
+
+186
+00:29:53.160 --> 00:29:54.540
+Nick Gray: Thanks just on that Mitch.
+
+187
+00:29:55.590 --> 00:29:57.450
+Nick Gray: I know in typescript is kind of like a.
+
+188
+00:29:59.340 --> 00:30:14.970
+Nick Gray: pain point where, if your library if some library that using didn't supply types you kind of end up having to do them all yourself or use like the escape hatch have any all over the place um did you run into anything similar like trying to talk Python.
+
+189
+00:30:16.380 --> 00:30:17.160
+Mitchell Paterson: um.
+
+190
+00:30:17.430 --> 00:30:27.630
+Mitchell Paterson: I had to give any case where i'm trying to supply a type we're cause the problem like that, so I should probably clarify these are like.
+
+191
+00:30:28.140 --> 00:30:44.730
+Mitchell Paterson: thing is the type hints as opposed to an actual type that you're putting in here it's more of a hint to something like my pie that something's going on, so you can get pretty like loose with what you really put on then i'm.
+
+192
+00:30:45.390 --> 00:30:46.740
+Nick Gray: Worse comes to worse.
+
+193
+00:30:46.770 --> 00:30:58.290
+Mitchell Paterson: You can always put a type of any but we haven't had to do that as far as I know, i've seen a lot of typescript for people, just like any any can that burns me up inside um but.
+
+194
+00:30:59.910 --> 00:31:08.730
+Mitchell Paterson: We haven't quite had to do that because it's It seems pretty flexible any any type that exists you're able to sort of put on there, I like.
+
+195
+00:31:10.290 --> 00:31:13.680
+Mitchell Paterson: Am I sort of understanding and answering the question correctly or is that.
+
+196
+00:31:13.770 --> 00:31:21.960
+Nick Gray: yeah like I guess like you know you've probably got functions that accepts some of these custom data in class things that you mentioned before, as but like.
+
+197
+00:31:22.980 --> 00:31:31.170
+Nick Gray: what's the type, for that is it just you know if you're using my data class is that the type that you'd attached to the argument, or is it just like object, or something.
+
+198
+00:31:31.680 --> 00:31:37.650
+Mitchell Paterson: yeah absolutely so you don't have to do object or anything like that you can literally just do my day of class.
+
+199
+00:31:38.040 --> 00:31:40.770
+Mitchell Paterson: And that will just work you don't have to.
+
+200
+00:31:43.020 --> 00:31:56.910
+Mitchell Paterson: yeah do anything generic like object or any or anything to try and make it work I haven't thus far I have not seen an example where i'm attempting to use a custom class of some kind, has caused that era.
+
+201
+00:31:58.830 --> 00:32:01.650
+Carlos Rojas: i'm just guessing what Nick was saying before.
+
+202
+00:32:03.240 --> 00:32:11.700
+Carlos Rojas: If I understood correctly, because I think i've had that problem with to be before it's like if you have a library, for example, let's say that you have a client for the next day because.
+
+203
+00:32:12.480 --> 00:32:29.850
+Carlos Rojas: If the client is not typed it doesn't return types, do you do take you to the call let's say it returns 200 but it doesn't say that is an integral your compiler just can give you any guarantee and you lose the whole benefit in that piece of code that is using the decline.
+
+204
+00:32:30.120 --> 00:32:31.500
+Carlos Rojas: of doing it today.
+
+205
+00:32:32.220 --> 00:32:39.300
+Mitchell Paterson: Right so so say you have like a response and it comes to your client flows right.
+
+206
+00:32:39.390 --> 00:32:43.950
+Mitchell Paterson: yeah and then what happens after that is your life.
+
+207
+00:32:45.390 --> 00:32:47.820
+Mitchell Paterson: You know what type is.
+
+208
+00:32:48.930 --> 00:32:49.470
+Mitchell Paterson: False.
+
+209
+00:32:49.860 --> 00:33:04.320
+Mitchell Paterson: hmm um so if this was inside some kind of function and i've written out function, you know my phone and then i've declared that function as returning a tight spot.
+
+210
+00:33:07.110 --> 00:33:07.680
+Mitchell Paterson: i'm.
+
+211
+00:33:09.510 --> 00:33:16.710
+Mitchell Paterson: So this client or close to here um there's two ways to skin go right.
+
+212
+00:33:18.030 --> 00:33:32.400
+Mitchell Paterson: Now the most common way i've seen this happen is that client post thing returns a class of some kind, usually it returns some kind of class, and all I would do is.
+
+213
+00:33:33.780 --> 00:33:41.850
+Mitchell Paterson: I would declare the function with response, and then I would do something like you know import from my clients.
+
+214
+00:33:44.640 --> 00:33:49.710
+Mitchell Paterson: From my client import models dot.
+
+215
+00:33:51.180 --> 00:33:51.930
+Mitchell Paterson: response.
+
+216
+00:33:53.550 --> 00:34:03.360
+Mitchell Paterson: And from that I would get the response class as long as I had that important it's then able to recognize that that is a response class.
+
+217
+00:34:03.720 --> 00:34:20.610
+Mitchell Paterson: Under the hood is recognizing that this is the response class with the like it's putting an automatic typing on there and then it can see that, like when this function returns, so if I say it here return false.
+
+218
+00:34:22.710 --> 00:34:38.640
+Mitchell Paterson: it's going to check and it's going to be like sorry it's a lowercase response and returning the variable if I say return response is then going to check and say all right was that of type response is that a response object um and it like my pie, is able to correctly check that.
+
+219
+00:34:40.380 --> 00:34:49.680
+Carlos Rojas: So you're saying it doesn't depend on if the library has implemented this type annotations you just need to return the class and that's just going to work.
+
+220
+00:34:50.160 --> 00:34:51.390
+Mitchell Paterson: yeah absolutely.
+
+221
+00:34:51.720 --> 00:34:55.380
+Mitchell Paterson: Because it depends, that the library has implemented that type annotation.
+
+222
+00:34:56.550 --> 00:35:01.590
+Mitchell Paterson: The alternative if something's being really weird is to just do this.
+
+223
+00:35:03.150 --> 00:35:08.580
+Mitchell Paterson: And you just add the type into yourself and then that will force it to recognize that it's that type.
+
+224
+00:35:09.150 --> 00:35:21.810
+Nick Gray: Which is kind of like casting it they like it couldn't it could actually be not could actually be not that type like if if it can sort of figure out what kind of post returns and you just say like i'm telling you responses of class response.
+
+225
+00:35:24.480 --> 00:35:30.270
+Nick Gray: Is there any like guarantees past that point or he kind of just like crossing your fingers that you said, of what it is.
+
+226
+00:35:31.740 --> 00:35:43.800
+Mitchell Paterson: i'm good question, I think, if this is not type annotated so client up close here is not type annotated then it's a crossing your fingers do.
+
+227
+00:35:44.460 --> 00:36:00.510
+Mitchell Paterson: um it is type annotated then my pie, will be able to tell and it'll tell you at the beginning, so it depends on the type annotation of that library, whether it has that no I believe i'm i'm not 100% sure about that.
+
+228
+00:36:02.280 --> 00:36:06.960
+Mitchell Paterson: Because they'll spa i've never actually seen it mess up in terms of.
+
+229
+00:36:08.610 --> 00:36:12.240
+Mitchell Paterson: Not being able to get the the type from any library that you're.
+
+230
+00:36:13.920 --> 00:36:15.360
+Mitchell Paterson: sort of asking for that.
+
+231
+00:36:18.270 --> 00:36:22.470
+Mitchell Paterson: But I guess in theory that could happen, I just haven't seen it happen in practice.
+
+232
+00:36:22.950 --> 00:36:29.130
+Nick Gray: yeah I think it sounds like it's kind of a different thing to talk stripping and javascript because.
+
+233
+00:36:30.420 --> 00:36:38.580
+Nick Gray: something about like knowing, you know that the class that you're talking about it's in native pilot it's not like in the in the typescript level above javascript.
+
+234
+00:36:39.720 --> 00:36:43.590
+Nick Gray: So it sounds like it kind of be a bit smoother than than their problem I mentioned at the start.
+
+235
+00:36:46.740 --> 00:36:49.440
+Carlos Rojas: um but even if you know the class.
+
+236
+00:36:50.790 --> 00:37:00.480
+Carlos Rojas: I think, because if it doesn't have typed in the library, it means that it could return on right and you're not capturing, that is to try it one a day that that's a response by.
+
+237
+00:37:01.470 --> 00:37:07.200
+Carlos Rojas: Like even if it's if you do not, but they certainly the class that doesn't guarantee that is not going to be non.
+
+238
+00:37:08.400 --> 00:37:12.000
+Carlos Rojas: And I type annotation would capture that thank.
+
+239
+00:37:13.860 --> 00:37:17.880
+Mitchell Paterson: You yeah so I guess like I said before, it kind of comes down to whether it has a type.
+
+240
+00:37:18.450 --> 00:37:19.290
+Mitchell Paterson: As far as I know.
+
+241
+00:37:20.700 --> 00:37:26.310
+Mitchell Paterson: If it does, then you're fine if it doesn't, then I guess you could have any problem with that.
+
+242
+00:37:27.540 --> 00:37:29.370
+Mitchell Paterson: Number 10 how you expect it to her to.
+
+243
+00:37:32.490 --> 00:37:43.770
+Linh Pham: hey Mitch, I have been playing with Ruby three and types and I found that if I have a like a stop like a double and I put double in as a as a even use double instance.
+
+244
+00:37:44.520 --> 00:37:53.670
+Linh Pham: When I call a function with that stop devil instance it complain, it is not the right time, so do you find a similar experience with Python.
+
+245
+00:37:55.800 --> 00:38:01.200
+Mitchell Paterson: i'm about complaining it's not a right time, when you do have the right fire by.
+
+246
+00:38:01.230 --> 00:38:05.400
+Linh Pham: Going when you using stop or something like that, or what doing unit testing.
+
+247
+00:38:06.900 --> 00:38:07.530
+Mitchell Paterson: A.
+
+248
+00:38:07.950 --> 00:38:08.910
+Mitchell Paterson: short answer is no.
+
+249
+00:38:09.570 --> 00:38:18.570
+Mitchell Paterson: I haven't seen any example like that, with the typing messing up in that way um it seems to have been pretty verbose so far.
+
+250
+00:38:20.760 --> 00:38:21.870
+Mitchell Paterson: yeah did.
+
+251
+00:38:23.310 --> 00:38:28.110
+Mitchell Paterson: Like that's the statistics, I guess, if you like, you wouldn't have.
+
+252
+00:38:29.490 --> 00:38:35.940
+Mitchell Paterson: yeah any type that you've you've added in there is, of course, like a type hints and not an actual type so.
+
+253
+00:38:36.960 --> 00:38:44.370
+Mitchell Paterson: When you run the test if i'm running the test and I haven't run my pie, or anything it's pretty much ignoring type hints.
+
+254
+00:38:45.270 --> 00:38:56.070
+Mitchell Paterson: So if i've told it something like um you meant to put a double in here, and then I put a double in there um it's sort of just said to itself, like.
+
+255
+00:38:56.880 --> 00:39:08.670
+Mitchell Paterson: I actually don't care that he told me that a double should be in here when it's running the code so in your tests it's only when you're running something like my pipe that checks the types that it actually picks up something like that.
+
+256
+00:39:09.570 --> 00:39:16.680
+Mitchell Paterson: So it's only picked up when you do static analysis of your card as opposed to when you're actually running the code.
+
+257
+00:39:17.340 --> 00:39:23.730
+Mitchell Paterson: And that's that's like both a good thing and a flaw in the sense that um when things go wrong.
+
+258
+00:39:24.330 --> 00:39:36.300
+Mitchell Paterson: And you have an example like like that double it's not going to like bring everything to a screeching halt, but it also means that, like your actual car when is actually run is not checking anything.
+
+259
+00:39:37.650 --> 00:39:43.830
+Mitchell Paterson: it's only checking it when my pie is wrong, which is genuine usually just run before you commit the car.
+
+260
+00:40:06.360 --> 00:40:12.210
+Mitchell Paterson: alrighty um I think were seem to have exhausted the list of questions.
+
+261
+00:40:13.590 --> 00:40:17.310
+Mitchell Paterson: Sorry, so i'll probably wrap it up here.
+
+262
+00:40:18.660 --> 00:40:22.680
+Mitchell Paterson: i'll post some links in the Channel That way, you can find out a bit more about doing.
+
+263
+00:40:24.240 --> 00:40:27.210
+Mitchell Paterson: Python and FP and how we actually did it.
+
+264
+00:40:28.350 --> 00:40:37.380
+Mitchell Paterson: So you can explore it a bit more, it is floor, but it is also got some good things about it so it's a mixed bag that's for sure.
+
+265
+00:40:38.520 --> 00:40:39.150
+Mitchell Paterson: alright.
+
+266
+00:40:40.560 --> 00:40:42.300
+Mitchell Paterson: yeah let's wrap it up thanks everybody.
+
+267
+00:40:44.010 --> 00:40:45.780
+Carlos Rojas: Thanks Thank you great job.
+
+268
+00:40:48.930 --> 00:40:50.790
+Olly Tonks: Thanks rich thanks.
+
